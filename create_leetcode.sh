@@ -71,7 +71,7 @@ func Test${problem_func_name}(t *testing.T) {
   }
   
   for _, test := range tests {
-    t.Run("", func(t *testing.T) {
+    t.Run("Test ${problem_func_name}", func(t *testing.T) {
       // 完整輸入參數
       result := ${problem_func_name}(test.parameters${problem_4digit_num})
       // compare 的方式需視情況調整
