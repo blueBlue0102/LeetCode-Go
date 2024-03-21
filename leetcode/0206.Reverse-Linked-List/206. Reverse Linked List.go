@@ -6,18 +6,11 @@ import (
 
 func ReverseLinkedList(head *structures.ListNode) *structures.ListNode {
 	var prev *structures.ListNode = nil
-	node := head
-
-	for node != nil {
-		next := node.Next
-		node.Next = prev
-		prev = node
-		node = next
+	for head != nil {
+		next := head.Next
+		head.Next = prev
+		prev = head
+		head = next
 	}
-
-	if prev == nil {
-		return head
-	} else {
-		return prev
-	}
+	return prev
 }
