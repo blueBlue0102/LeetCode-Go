@@ -41,15 +41,8 @@ func TestLinkedListCycleII(t *testing.T) {
 			// 完整輸入參數
 			result := LinkedListCycleII(test.parameters0142.head)
 			// compare 的方式需視情況調整
-			switch test.ans {
-			case nil:
-				if result != nil {
-					t.Errorf("LinkedListCycleII(%+v) got %+v, want %+v", test.parameters0142, result, test.ans)
-				}
-			default:
-				if !reflect.DeepEqual(result, test.ans) {
-					t.Errorf("LinkedListCycleII(%+v) got %+v, want %+v", test.parameters0142, result, test.ans)
-				}
+			if !reflect.DeepEqual(result, test.ans) {
+				t.Errorf("LinkedListCycleII(%+v) got %+v, want %+v", test.parameters0142, result, test.ans)
 			}
 		})
 	}
