@@ -45,3 +45,35 @@ func List2Ints(head *ListNode) []int {
 	}
 	return res
 }
+
+// 將節點新增至 tail
+func ConnectNodeOnTail(head *ListNode, node *ListNode) *ListNode {
+	if head == nil {
+		return node
+	}
+
+	n := head
+	for n.Next != nil {
+		n = n.Next
+	}
+	n.Next = node
+	return head
+}
+
+// createTestCase
+//
+// list: 要建立的 list
+//
+// pos: cycle 的起點 index 位置
+//
+// return 1: 所建立好的 list
+//
+// return 2: cycle 起點的 node
+func CreateCycleTestCase(list []int, pos int) (*ListNode, *ListNode) {
+	posNode := &ListNode{Val: list[pos]}
+	frontList := Ints2List(list[0:pos])
+	behindList := Ints2List(list[pos+1 : len(list)-1])
+	behindList = ConnectNodeOnTail(behindList, &ListNode{Val: list[len(list)-1], Next: posNode})
+	posNode.Next = behindList
+	return ConnectNodeOnTail(frontList, posNode), posNode
+}
