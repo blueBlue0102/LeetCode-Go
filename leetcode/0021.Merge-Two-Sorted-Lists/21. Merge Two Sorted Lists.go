@@ -5,6 +5,25 @@ import (
 )
 
 func MergeTwoSortedLists(list1 *structures.ListNode, list2 *structures.ListNode) *structures.ListNode {
+	type Method string
+	const (
+		TwoPointer Method = "雙指針"
+		Recur      Method = "遞迴"
+	)
+
+	method := Recur
+
+	switch method {
+	case TwoPointer:
+		return twoPointer(list1, list2)
+	case Recur:
+		return recur(list1, list2)
+	default:
+		return twoPointer(list1, list2)
+	}
+}
+
+func twoPointer(list1 *structures.ListNode, list2 *structures.ListNode) *structures.ListNode {
 	// sentinel node 的作用在於可以不必考慮 head 節點該如何被建立的問題
 	// 假如 list1 和 list2 都是 nil 的話，head 也會是 nil
 	// 若不透過 sentinel node 的寫法，就是要在開頭初始化時額外判斷這件事
@@ -34,4 +53,20 @@ func MergeTwoSortedLists(list1 *structures.ListNode, list2 *structures.ListNode)
 	}
 
 	return ans.Next
+}
+
+func recur(list1 *structures.ListNode, list2 *structures.ListNode) *structures.ListNode {
+	if list1 == nil {
+		return list2
+	} else if list2 == nil {
+		return list1
+	}
+
+	if list1.Val <= list2.Val {
+		list1.Next = recur(list1.Next, list2)
+		return list1
+	} else {
+		list2.Next = recur(list1, list2.Next)
+		return list2
+	}
 }
