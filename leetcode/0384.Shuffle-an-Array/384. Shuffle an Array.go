@@ -21,7 +21,7 @@ func (solution *Solution) Shuffle() []int {
 	copy(result, solution.nums)
 
 	for index := len(result) - 1; index > 0; index-- {
-		randNum := rand.IntN(index)
+		randNum := rand.IntN(index + 1)
 		result[randNum], result[index] = result[index], result[randNum]
 	}
 	return result
