@@ -1,24 +1,30 @@
 package leetcode
 
 func KthLargestElementinanArray(nums []int, k int) int {
-	left, pivot := -1, len(nums)-1
-	// 最終 pivot 的右邊都是 > nums[pivot]；左邊都是 <= nums[pivot]
-	for left < pivot-1 {
-		if nums[pivot] >= nums[pivot-1] {
+	pivotVal := nums[len(nums)-1]
+	left, curr, right := -1, 0, len(nums)
+	// 將 nums 根據 pivotVal 由大排至小
+	for curr < right {
+		if nums[curr] > pivotVal {
 			left++
-			nums[left], nums[pivot-1] = nums[pivot-1], nums[left]
-		} else {
-			nums[pivot], nums[pivot-1] = nums[pivot-1], nums[pivot]
-			pivot--
+			nums[curr], nums[left] = nums[left], nums[curr]
+			curr++
+		} else if nums[curr] < pivotVal {
+			right--
+			nums[curr], nums[right] = nums[right], nums[curr]
+		} else if nums[curr] == pivotVal {
+			curr++
 		}
 	}
 
-	if pivot > len(nums)-k {
-		// 所找到的 pivot 太大，下一次從 pivot 的左邊開始找起
-		return KthLargestElementinanArray(nums[:pivot], k-(len(nums)-pivot))
-	} else if pivot < len(nums)-k {
-		// 所找到的 pivot 太小，下一次從 pivot 的右邊開始找起
-		return KthLargestElementinanArray(nums[pivot+1:], k)
+	if k-1 <= left {
+		// 找到的 pivotVal 太小了，所以要往 left 區間去找
+		return KthLargestElementinanArray(nums[:left+1], k)
+	} else if k-1 >= right {
+		// 找到的 pivotVal 太大了，所以要往 right 區間去找
+		return KthLargestElementinanArray(nums[right:], k-right)
 	}
-	return nums[pivot]
+	// pivotVal 落在 left 和 right 之間
+	// 由於 left 和 right 之間的值都必定等於 pivotVal，所以回傳 pivotVal
+	return pivotVal
 }
