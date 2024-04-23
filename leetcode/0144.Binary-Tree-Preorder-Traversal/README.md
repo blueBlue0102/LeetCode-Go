@@ -7,8 +7,6 @@
 
 或是可以使用 Morris Traversal 來達成時間複雜度 $O(n)$ 和空間複雜度 $O(1)$
 
-目前僅使用遞迴
-
 ## Takeaway
 
 - Tree Preorder Traversal
