@@ -7,7 +7,7 @@
 
 或是可以使用 Morris Traversal 來達成時間複雜度 $O(n)$ 和空間複雜度 $O(1)$
 
-目前僅使用遞迴
+Post-Order 的 stack 演算法較複雜，目前單純只是按照[這裡](https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/Data_Structures/binary_tree_traversals.html)去做
 
 ## Takeaway
 

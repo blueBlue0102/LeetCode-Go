@@ -31,6 +31,10 @@ func TestBinaryTreePostorderTraversal(t *testing.T) {
 			parameters0145{structures.Ints2TreeNode([]int{1})},
 			[]int{1},
 		},
+		{
+			parameters0145{structures.Ints2TreeNode([]int{1, 2, 3, structures.NULL, 4, structures.NULL, structures.NULL, 5, 6, structures.NULL, 7})},
+			[]int{7, 5, 6, 4, 2, 3, 1},
+		},
 	}
 
 	for _, test := range tests {
