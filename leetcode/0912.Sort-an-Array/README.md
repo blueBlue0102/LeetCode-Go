@@ -8,3 +8,4 @@
 ## Takeaway
 
 - Merge Sort
+- Quick Sort

@@ -1,7 +1,8 @@
 package leetcode
 
 func SortanArray(nums []int) []int {
-	return MergeSort_Recur(nums)
+	// return MergeSort_Recur(nums)
+	return QuickSort(nums)
 }
 
 func MergeSort_Recur(nums []int) []int {
@@ -41,4 +42,29 @@ func merge(arr1 []int, arr2 []int) []int {
 	}
 
 	return result
+}
+
+func QuickSort(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
+	pivotValue := nums[len(nums)-1]
+	left, curr, right := -1, 0, len(nums)
+	for curr < right {
+		if nums[curr] < pivotValue {
+			left++
+			nums[curr], nums[left] = nums[left], nums[curr]
+			curr++
+		} else if nums[curr] > pivotValue {
+			right--
+			nums[curr], nums[right] = nums[right], nums[curr]
+		} else {
+			curr++
+		}
+	}
+
+	leftPart := QuickSort(nums[:left+1])
+	rightPart := QuickSort(nums[right:])
+	result := append(leftPart, nums[left+1:right]...)
+	return append(result, rightPart...)
 }
