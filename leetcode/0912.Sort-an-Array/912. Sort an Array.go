@@ -6,7 +6,7 @@ import (
 
 func SortanArray(nums []int) []int {
 	// return MergeSort_Recur(nums)
-	return QuickSort(nums)
+	return QuickSort_3Way(nums)
 }
 
 func MergeSort_Recur(nums []int) []int {
@@ -52,6 +52,30 @@ func QuickSort(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
+
+	// 最終 nums[< left] 的值都是小於 pivot 的值
+	left, right := 0, len(nums)-1
+	pivot := rand.Int() % len(nums)
+	nums[pivot], nums[right] = nums[right], nums[pivot]
+
+	for curr := range nums {
+		if nums[curr] < nums[right] {
+			nums[curr], nums[left] = nums[left], nums[curr]
+			left++
+		}
+	}
+	nums[left], nums[right] = nums[right], nums[left]
+
+	QuickSort(nums[:left])
+	QuickSort(nums[left+1:])
+
+	return nums
+}
+
+func QuickSort_3Way(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
 	pivotValue := nums[rand.Int()%len(nums)]
 	left, curr, right := -1, 0, len(nums)
 
@@ -68,8 +92,8 @@ func QuickSort(nums []int) []int {
 		}
 	}
 
-	QuickSort(nums[:left+1])
-	QuickSort(nums[right:])
+	QuickSort_3Way(nums[:left+1])
+	QuickSort_3Way(nums[right:])
 
 	return nums
 }
