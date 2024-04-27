@@ -1,5 +1,9 @@
 package leetcode
 
+import (
+	"math/rand/v2"
+)
+
 func SortanArray(nums []int) []int {
 	// return MergeSort_Recur(nums)
 	return QuickSort(nums)
@@ -48,8 +52,9 @@ func QuickSort(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
-	pivotValue := nums[len(nums)-1]
+	pivotValue := nums[rand.Int()%len(nums)]
 	left, curr, right := -1, 0, len(nums)
+
 	for curr < right {
 		if nums[curr] < pivotValue {
 			left++
@@ -63,8 +68,8 @@ func QuickSort(nums []int) []int {
 		}
 	}
 
-	leftPart := QuickSort(nums[:left+1])
-	rightPart := QuickSort(nums[right:])
-	result := append(leftPart, nums[left+1:right]...)
-	return append(result, rightPart...)
+	QuickSort(nums[:left+1])
+	QuickSort(nums[right:])
+
+	return nums
 }
