@@ -32,9 +32,9 @@
 
 看解答後才知道可以用 Merge Sort  
 又能再分成 Top Down 和 Bottom Up 的寫法  
-Top Down 的寫法採用遞迴，時間複雜度是 O(n \cdot log n)，空間複雜度是 $O(n)$
+Top Down 的寫法採用遞迴，時間複雜度是 $O(n \cdot log n)$，空間複雜度是 $O(n)$
 
-> 空間複雜度是 $O(n)$ 而不是 $O(n \cdot log n)$ 的解釋可參考  
+> 「空間複雜度是 $O(n)$ 而不是 $O(n \cdot log n)$」的解釋可參考  
 > <https://stackoverflow.com/questions/10342890/merge-sort-time-and-space-complexity/28641693#28641693>
 
 Bottom Up 做法之後有空再研究
