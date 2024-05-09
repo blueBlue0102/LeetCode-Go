@@ -1,23 +1,23 @@
 package leetcode
 
 func LetterTilePossibilities(tiles string) int {
-	ansMap := map[string]bool{}
-	for length := 1; length <= len([]rune(tiles)); length++ {
-		dfs(ansMap, []rune(tiles), []rune{}, length)
+	total := 0
+	// 紀錄每種字元的數量
+	dict := map[rune]int{}
+	for _, runeVal := range tiles {
+		dict[runeVal]++
 	}
-	return len(ansMap)
+	backtracking(&total, dict)
+	return total
 }
 
-func dfs(ansMap map[string]bool, tiles []rune, data []rune, length int) {
-	if len(data) == length {
-		if !ansMap[string(data)] {
-			ansMap[string(data)] = true
+func backtracking(count *int, dict map[rune]int) {
+	for runeVal, num := range dict {
+		if num > 0 {
+			dict[runeVal]--
+			*count++
+			backtracking(count, dict)
+			dict[runeVal]++
 		}
-		return
-	}
-	for i, runeValue := range tiles {
-		data = append(data, runeValue)
-		dfs(ansMap, append(tiles[:i:i], tiles[i+1:]...), data, length)
-		data = data[:len(data)-1]
 	}
 }
