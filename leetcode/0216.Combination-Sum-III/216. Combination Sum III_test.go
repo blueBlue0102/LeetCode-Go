@@ -43,8 +43,8 @@ func TestCombinationSumIII(t *testing.T) {
 			// 完整輸入參數
 			result := CombinationSumIII(test.parameters0216.k, test.parameters0216.n)
 			// compare 的方式需視情況調整
-			test.ans = utils.Sort2DIntArray(test.ans)
-			result = utils.Sort2DIntArray(result)
+			test.ans = utils.Sort2DArray(test.ans)
+			result = utils.Sort2DArray(result)
 			if !reflect.DeepEqual(result, test.ans) {
 				t.Errorf("CombinationSumIII(%+v) got %+v, want %+v", test.parameters0216, result, test.ans)
 			}

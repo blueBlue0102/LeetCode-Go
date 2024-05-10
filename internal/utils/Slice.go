@@ -1,9 +1,12 @@
 package utils
 
-import "sort"
+import (
+	"cmp"
+	"sort"
+)
 
-// 以 in-place 的方式排序二維 int 陣列
-func Sort2DIntArray(matrix [][]int) [][]int {
+// 以 in-place 的方式排序二維陣列
+func Sort2DArray[T cmp.Ordered](matrix [][]T) [][]T {
 	sort.SliceStable(matrix, func(i, j int) bool {
 		minLen := min(len(matrix[i]), len(matrix[j]))
 		for k := 0; k < minLen; k++ {

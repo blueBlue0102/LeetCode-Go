@@ -39,9 +39,9 @@ func TestAllPathsFromSourcetoTarget(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run("Test AllPathsFromSourcetoTarget", func(t *testing.T) {
-			test.ans = utils.Sort2DIntArray(test.ans)
+			test.ans = utils.Sort2DArray(test.ans)
 			// 完整輸入參數
-			result := utils.Sort2DIntArray(AllPathsFromSourcetoTarget(test.parameters0797.graph))
+			result := utils.Sort2DArray(AllPathsFromSourcetoTarget(test.parameters0797.graph))
 			// compare 的方式需視情況調整
 			if !reflect.DeepEqual(result, test.ans) {
 				t.Errorf("AllPathsFromSourcetoTarget(%+v) got %+v, want %+v", test.parameters0797, result, test.ans)

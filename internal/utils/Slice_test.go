@@ -6,7 +6,7 @@ import (
 )
 
 func TestSort2DIntArray(t *testing.T) {
-	tests := []struct {
+	intTests := []struct {
 		matrix [][]int
 		want   [][]int
 	}{
@@ -41,11 +41,57 @@ func TestSort2DIntArray(t *testing.T) {
 		},
 	}
 
+	for _, test := range intTests {
+		t.Run("", func(t *testing.T) {
+			got := Sort2DArray(test.matrix)
+			if !reflect.DeepEqual(got, test.want) {
+				t.Errorf("Sort2DArray(%v) = %v, want %v", test.matrix, got, test.want)
+			}
+		})
+	}
+}
+
+func TestSort2DStringArray(t *testing.T) {
+	tests := []struct {
+		matrix [][]string
+		want   [][]string
+	}{
+		{
+			// 測試空矩陣
+			matrix: [][]string{},
+			want:   [][]string{},
+		},
+		{
+			// 測試只有一行的矩陣
+			matrix: [][]string{{"c", "b", "a"}},
+			want:   [][]string{{"c", "b", "a"}},
+		},
+		{
+			// 測試多行多列的矩陣
+			matrix: [][]string{{"f", "e", "d"}, {"i", "h", "g"}, {"c", "b", "a"}},
+			want:   [][]string{{"c", "b", "a"}, {"f", "e", "d"}, {"i", "h", "g"}},
+		},
+		{
+			// 測試各行長度不同的矩陣
+			matrix: [][]string{{"c", "b", "a"}, {"i", "h", "g", "j"}, {"f", "e"}},
+			want:   [][]string{{"c", "b", "a"}, {"f", "e"}, {"i", "h", "g", "j"}},
+		},
+		{
+			// 測試完全相反的排序順序
+			matrix: [][]string{{"i", "h", "g"}, {"f", "e", "d"}, {"c", "b", "a"}},
+			want:   [][]string{{"c", "b", "a"}, {"f", "e", "d"}, {"i", "h", "g"}},
+		},
+		{
+			matrix: [][]string{{"e"}, {"a"}, {"a", "b"}, {"e", "d", "c"}, {"e", "d", "b"}, {"e", "d", "b", "b"}},
+			want:   [][]string{{"a"}, {"a", "b"}, {"e"}, {"e", "d", "b"}, {"e", "d", "b", "b"}, {"e", "d", "c"}},
+		},
+	}
+
 	for _, test := range tests {
 		t.Run("", func(t *testing.T) {
-			got := Sort2DIntArray(test.matrix)
+			got := Sort2DArray(test.matrix)
 			if !reflect.DeepEqual(got, test.want) {
-				t.Errorf("Sort2DIntArray(%v) = %v, want %v", test.matrix, got, test.want)
+				t.Errorf("Sort2DArray(%v) = %v, want %v", test.matrix, got, test.want)
 			}
 		})
 	}

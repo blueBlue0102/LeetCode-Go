@@ -35,9 +35,9 @@ func TestPermutations(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run("Test Permutations", func(t *testing.T) {
-			test.ans = utils.Sort2DIntArray(test.ans)
+			test.ans = utils.Sort2DArray(test.ans)
 			// 完整輸入參數
-			result := utils.Sort2DIntArray(Permutations(test.parameters0046.nums))
+			result := utils.Sort2DArray(Permutations(test.parameters0046.nums))
 			// compare 的方式需視情況調整
 			if !reflect.DeepEqual(result, test.ans) {
 				t.Errorf("Permutations(%+v) got %+v, want %+v", test.parameters0046, result, test.ans)
