@@ -14,5 +14,5 @@ BST 是一個已經排序好的樹，其定義"通常"是【左子樹 < root < �
 
 ## Takeaway
 
-- BST 定義
+- Binary Search Tree
 - DFS - Inorder Traversal
