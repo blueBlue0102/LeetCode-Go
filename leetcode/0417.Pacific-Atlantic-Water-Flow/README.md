@@ -20,4 +20,4 @@
 
 ## Takeaway
 
-- Graph Transversal
+- Graph Traversal
