@@ -18,7 +18,7 @@
 這是不可能達成的，`課程_0`和`課程_1`是一個閉環，所以答案是 `false`
 
 以有向圖的概念思考  
-若視 `numCourses` 為 Edge 數量，`prerequisites` 則為 Vertex  
+若視 `numCourses` 為 Vertex 數量，`prerequisites` 則為 Edge  
 然後要確認這個有向圖當中沒有閉環
 
 進行圖的 Traversal，記錄遇過的節點，若重複遇到節點則表示有閉環  
