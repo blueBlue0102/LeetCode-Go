@@ -5,7 +5,9 @@ import (
 	"sort"
 )
 
-// 以 in-place 的方式排序二維陣列
+// Sort2DArray sorts a 2D array by comparing elements in each subarray lexicographically.
+// If the elements are equal up to the length of the shorter subarray,
+// the shorter subarray is considered smaller.
 func Sort2DArray[T cmp.Ordered](matrix [][]T) [][]T {
 	sort.SliceStable(matrix, func(i, j int) bool {
 		minLen := min(len(matrix[i]), len(matrix[j]))
