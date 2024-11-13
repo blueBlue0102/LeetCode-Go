@@ -96,3 +96,50 @@ func TestSort2DStringArray(t *testing.T) {
 		})
 	}
 }
+
+func TestSort2DArrayWithSortedSubArrays(t *testing.T) {
+	tests := []struct {
+		matrix [][]int
+		want   [][]int
+	}{
+		{
+			// 測試空矩陣
+			matrix: [][]int{},
+			want:   [][]int{},
+		},
+		{
+			// 測試只有一行的矩陣
+			matrix: [][]int{{3, 1, 2}},
+			want:   [][]int{{1, 2, 3}},
+		},
+		{
+			// 測試多行多列的矩陣
+			matrix: [][]int{{6, 4, 5}, {9, 7, 8}, {3, 1, 2}},
+			want:   [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+		},
+		{
+			// 測試各行長度不同的矩陣
+			matrix: [][]int{{3, 1, 2}, {8, 9, 7, 10}, {5, 4}},
+			want:   [][]int{{1, 2, 3}, {4, 5}, {7, 8, 9, 10}},
+		},
+		{
+			// 測試完全相反的排序順序
+			matrix: [][]int{{9, 7, 8}, {6, 4, 5}, {3, 1, 2}},
+			want:   [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+		},
+		{
+			// 測試包含重複元素的矩陣
+			matrix: [][]int{{5}, {1}, {1, 2}, {5, 4, 3}, {5, 4, 2}, {5, 4, 2, 2}},
+			want:   [][]int{{1}, {1, 2}, {2, 2, 4, 5}, {2, 4, 5}, {3, 4, 5}, {5}},
+		},
+	}
+
+	for _, test := range tests {
+		t.Run("", func(t *testing.T) {
+			got := Sort2DArrayWithSortedSubArrays(test.matrix)
+			if !reflect.DeepEqual(got, test.want) {
+				t.Errorf("Sort2DArrayWithSortedSubArrays(%v) = %v, want %v", test.matrix, got, test.want)
+			}
+		})
+	}
+}
